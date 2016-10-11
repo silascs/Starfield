@@ -1,11 +1,25 @@
-//your code here
+NormalParticle test;
+NormalParticle [] space;
 void setup()
 {
 	size(400,400);
+	test = new NormalParticle();
+	space = new NormalParticle [100];
+	for (int i = 0; i < space.length; i++)
+	{
+		space[i] = new NormalParticle();
+	}
 }
 void draw()
 {
-	//your code here
+	background(2,4,54);
+	test.move();
+	test.show();
+	for(int i=0; i<space.length; i++)
+ 	{
+ 		space[i].move();
+ 		space[i].show();
+ 	}
 }
 class NormalParticle
 {
@@ -28,7 +42,7 @@ class NormalParticle
 	void show()
 	{
 		fill(pColor);
-		ellipse((float)pX, (float)pY, 15,15);
+		ellipse((float)pX, (float)pY, 7,7);
 	}
 }
 interface Particle
