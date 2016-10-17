@@ -1,27 +1,37 @@
-NormalParticle test;
-NormalParticle [] space;
+
+Particle [] space;
 void setup()
 {
 	size(400,400);
-	test = new NormalParticle();
-	space = new NormalParticle [100];
+	space = new Particle [100];
 	for (int i = 0; i < space.length; i++)
 	{
-		space[i] = new NormalParticle();
+		if(i%23 == 0)
+		{
+			space[i] = new OddballParticle();
+		}
+		else if(i%21 == 0) 
+		{
+			space[i] = new JumboParticle();
+		}
+		else
+		{
+			space[i] = new NormalParticle();
+		}
 	}
 }
 void draw()
 {
 	background(2,4,54);
-	test.move();
-	test.show();
+	space[1].move();
+	space[1].move();
 	for(int i=0; i<space.length; i++)
  	{
  		space[i].move();
  		space[i].show();
  	}
 }
-class NormalParticle
+class NormalParticle implements Particle
 {
 	double pX, pY, pAngle, pSpeed;
 	int pColor;
@@ -30,16 +40,40 @@ class NormalParticle
 		pX = 200;
 		pY = 200;
 		pAngle = Math.PI*2*Math.random();
-		pSpeed = 10*Math.random();
+		pSpeed = 4*Math.random()+1;
 		pColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
 
 	}
-	void move()
+	public void move()
 	{
 		pX += Math.cos(pAngle)*pSpeed;
 		pY += Math.sin(pAngle)*pSpeed;
+		if (pX > 400)
+		{
+			pX = 200;
+			pY = 200;
+			pAngle = Math.PI*2*Math.random();
+		}
+		if (pX < 0)
+		{
+			pX = 200;
+			pY = 200;
+			pAngle = Math.PI*2*Math.random();
+		}
+		if (pY > 400)
+		{
+			pY = 200;
+			pX = 200;
+			pAngle = Math.PI*2*Math.random();
+		}
+		if (pY < 0)
+		{
+			pY = 200;
+			pX = 200;
+			pAngle = Math.PI*2*Math.random();
+		}
 	}
-	void show()
+	public void show()
 	{
 		fill(pColor);
 		ellipse((float)pX, (float)pY, 7,7);
@@ -47,14 +81,37 @@ class NormalParticle
 }
 interface Particle
 {
-	//your code here
+	public void move();
+	public void show();
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle
 {
-	//your code here
+	double oX,oY,oAngle,oSpeed;
+	OddballParticle()
+	{
+		oX = 200;
+		oY = 200;
+		oAngle = Math.PI*2*Math.random();
+		oSpeed = 3*Math.random();
+	}
+	public void move()
+	{
+		oX += Math.cos(oAngle)*oSpeed;
+		oY += Math.sin(oAngle)*oSpeed;
+		oAngle += 0.01;
+	}
+	public void show()
+	{
+		fill(255, 0, 255);
+		rect((float)oX, (float)oY, 15, 15);
+	}
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle
 {
-	//your code here
+	public void show()
+	{
+		fill(pColor);
+		ellipse((float)pX, (float)pY, 25,25);
+	}
 }
 
