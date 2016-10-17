@@ -2,7 +2,7 @@
 Particle [] space;
 void setup()
 {
-	size(400,400);
+	size(800,800);
 	space = new Particle [100];
 	for (int i = 0; i < space.length; i++)
 	{
@@ -37,8 +37,8 @@ class NormalParticle implements Particle
 	int pColor;
 	NormalParticle()
 	{
-		pX = 200;
-		pY = 200;
+		pX = 400;
+		pY = 400;
 		pAngle = Math.PI*2*Math.random();
 		pSpeed = 4*Math.random()+1;
 		pColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
@@ -48,28 +48,28 @@ class NormalParticle implements Particle
 	{
 		pX += Math.cos(pAngle)*pSpeed;
 		pY += Math.sin(pAngle)*pSpeed;
-		if (pX > 400)
+		if (pX > 800)
 		{
-			pX = 200;
-			pY = 200;
+			pX = 400;
+			pY = 400;
 			pAngle = Math.PI*2*Math.random();
 		}
 		if (pX < 0)
 		{
-			pX = 200;
-			pY = 200;
+			pX = 400;
+			pY = 400;
 			pAngle = Math.PI*2*Math.random();
 		}
-		if (pY > 400)
+		if (pY > 800)
 		{
-			pY = 200;
-			pX = 200;
+			pY = 400;
+			pX = 400;
 			pAngle = Math.PI*2*Math.random();
 		}
 		if (pY < 0)
 		{
-			pY = 200;
-			pX = 200;
+			pY = 400;
+			pX = 400;
 			pAngle = Math.PI*2*Math.random();
 		}
 	}
@@ -89,8 +89,8 @@ class OddballParticle implements Particle
 	double oX,oY,oAngle,oSpeed;
 	OddballParticle()
 	{
-		oX = 200;
-		oY = 200;
+		oX = 400;
+		oY = 400;
 		oAngle = Math.PI*2*Math.random();
 		oSpeed = 3*Math.random();
 	}
